@@ -11,6 +11,7 @@ RUN \
     bash \
     tzdata \
     nginx \
+    nginx-mod-http-set-misc \
     nginx-mod-http-dav-ext \
     nginx-mod-http-fancyindex && \
   echo "**** configure logging ****" && \
