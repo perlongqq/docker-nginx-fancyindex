@@ -9,11 +9,12 @@ RUN \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
     bash \
-    tzdata \
+    logrotate \
     nginx \
     nginx-mod-http-set-misc \
     nginx-mod-http-dav-ext \
-    nginx-mod-http-fancyindex
+    nginx-mod-http-fancyindex \
+    tzdata
 
 EXPOSE 80
 EXPOSE 443
