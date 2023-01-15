@@ -1,0 +1,13 @@
+/var/log/nginx/*.log {
+        weekly
+        rotate 14
+        compress
+        delaycompress
+        nodateext
+        notifempty
+        missingok
+        sharedscripts
+        postrotate
+                start-stop-daemon --signal USR1 --pidfile /run/nginx/nginx.pid
+        endscript
+}
