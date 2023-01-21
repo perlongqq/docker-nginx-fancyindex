@@ -14,6 +14,7 @@ RUN \
     nginx-mod-http-set-misc \
     nginx-mod-http-dav-ext \
     nginx-mod-http-fancyindex \
+    nginx-mod-http-geoip2 \
     tzdata
 
 EXPOSE 80
