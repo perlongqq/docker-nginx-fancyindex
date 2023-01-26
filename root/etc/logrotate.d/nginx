@@ -1,4 +1,4 @@
-/var/log/nginx/*.log {
+/config/log/nginx/*.log {
         weekly
         rotate 14
         compress
@@ -8,6 +8,7 @@
         missingok
         sharedscripts
         postrotate
-                start-stop-daemon --signal USR1 --pidfile /run/nginx/nginx.pid
+                s6-svc -1 /run/service/svc-nginx
         endscript
+        su abc abc
 }

@@ -1,25 +1,30 @@
-# Simple Dockerfile to add nginx-mod-http-dav-ext and nginx-mod-http-fancyindex to alpine nginx
-# Inspired by https://github.com/nginxinc/docker-nginx/blob/master/stable/alpine/Dockerfile
-FROM docker.io/alpine:latest
+# Inspired by https://github.com/linuxserver/docker-baseimage-alpine-nginx/blob/master/Dockerfile
+FROM ghcr.io/linuxserver/baseimage-alpine:3.17
 
+# install packages
 RUN \
-  echo "**** configure user ****" && \
-  addgroup -g 101 -S nginx && \
-  adduser -S -D -H -u 101 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx && \
-  echo "**** install runtime packages ****" && \
+  echo "**** install build packages ****" && \
   apk add --no-cache \
-    bash \
+    apache2-utils \
+    git \
     logrotate \
+    nano \
     nginx \
-    nginx-mod-http-set-misc \
     nginx-mod-http-dav-ext \
     nginx-mod-http-fancyindex \
     nginx-mod-http-geoip2 \
-    tzdata
+    nginx-mod-http-set-misc \
+    openssl && \
+  echo "**** configure nginx ****" && \
+  rm -f /etc/nginx/http.d/default.conf && \
+  echo "**** fix logrotate ****" && \
+  sed -i "s#/var/log/messages {}.*# #g" \
+    /etc/logrotate.conf && \
+  sed -i 's#/usr/sbin/logrotate /etc/logrotate.conf#/usr/sbin/logrotate /etc/logrotate.conf -s /config/log/logrotate.status#g' \
+    /etc/periodic/daily/logrotate
 
-EXPOSE 80
-EXPOSE 443
+# add local files
+COPY root/ /
 
-STOPSIGNAL SIGQUIT
-
-CMD ["nginx", "-g", "daemon off;"]
+# ports and volumes
+EXPOSE 80 443

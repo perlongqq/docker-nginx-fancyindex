@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+# Update default config files
+cp -ru /defaults/nginx/ /config/
+
+# Update default website content
+cp -ru /defaults/www/ /config/
