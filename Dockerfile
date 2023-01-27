@@ -8,7 +8,6 @@ RUN \
     apache2-utils \
     git \
     logrotate \
-    nano \
     nginx \
     nginx-mod-http-dav-ext \
     nginx-mod-http-fancyindex \
@@ -28,3 +27,4 @@ COPY root/ /
 
 # ports and volumes
 EXPOSE 80 443
+VOLUME /config
