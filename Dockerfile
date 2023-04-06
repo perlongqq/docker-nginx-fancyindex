@@ -32,3 +32,6 @@ COPY root/ /
 # ports and volumes
 EXPOSE 80 443
 VOLUME /config
+
+# healthcheck
+HEALTHCHECK CMD curl --fail http://localhost:80
