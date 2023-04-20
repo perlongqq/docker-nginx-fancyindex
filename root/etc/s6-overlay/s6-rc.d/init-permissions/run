@@ -9,8 +9,6 @@ lsiown -R abc:abc \
 lsiown -R abc:abc \
     /config/keys \
     /config/nginx
-
-lsiown abc:abc \
     /config/log
 
 chmod -R g+w \
