@@ -8,4 +8,5 @@ mkdir -p \
     /config/nginx/site-confs \
     /run \
     /var/lib/nginx/tmp/client_body \
-    /var/tmp/nginx
+    /var/tmp/nginx \
+    /var/lib/nginx/cache/public
