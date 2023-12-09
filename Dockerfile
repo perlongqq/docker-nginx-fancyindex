@@ -1,5 +1,5 @@
 # Inspired by https://github.com/linuxserver/docker-baseimage-alpine-nginx/blob/master/Dockerfile
-FROM ghcr.io/linuxserver/baseimage-alpine:3.18
+FROM ghcr.io/linuxserver/baseimage-alpine:3.19
 
 LABEL org.opencontainers.image.source=https://github.com/kylhill/docker-nginx
 LABEL org.opencontainers.image.description="linuxserver.io Nginx (without PHP) inside Docker"
