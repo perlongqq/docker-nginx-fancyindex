@@ -16,7 +16,6 @@ RUN \
     nginx-mod-http-dav-ext \
     nginx-mod-http-fancyindex \
     nginx-mod-http-geoip2 \
-    nginx-mod-http-set-misc \
     openssl && \
   echo "**** configure nginx ****" && \
   rm -f /etc/nginx/http.d/default.conf && \
