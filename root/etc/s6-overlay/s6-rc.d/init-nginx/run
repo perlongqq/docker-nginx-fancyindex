@@ -10,11 +10,3 @@ for file in /config/log/nginx/access.log /config/log/nginx/error.log; do
         touch "${file}"
     fi
 done
-
-# copy default config files if they don't exist
-if [[ ! -f /config/nginx/nginx.conf ]]; then
-    cp /defaults/nginx/nginx.conf.sample /config/nginx/nginx.conf
-fi
-if [[ ! -f /config/nginx/ssl.conf ]]; then
-    cp /defaults/nginx/ssl.conf.sample /config/nginx/ssl.conf
-fi
