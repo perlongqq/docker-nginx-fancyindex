@@ -3,3 +3,21 @@
 
 # Update default config files
 cp -ru /defaults/nginx/ /config/
+
+# precreate log files
+for file in /config/log/nginx/access.log /config/log/nginx/error.log; do
+    if [[ ! -f "${file}" ]]; then
+        touch "${file}"
+    fi
+done
+
+# copy default config files if they don't exist
+if [[ ! -f /config/nginx/nginx.conf ]]; then
+    cp /defaults/nginx/nginx.conf.sample /config/nginx/nginx.conf
+fi
+if [[ ! -f /config/nginx/ssl.conf ]]; then
+    cp /defaults/nginx/ssl.conf.sample /config/nginx/ssl.conf
+fi
+if [[ ! -f /config/nginx/site-confs/default.conf ]]; then
+    cp /defaults/nginx/site-confs/default.conf.sample /config/nginx/site-confs/default.conf
+fi

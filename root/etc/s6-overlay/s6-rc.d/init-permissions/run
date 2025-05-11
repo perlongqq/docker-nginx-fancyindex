@@ -1,21 +1,24 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
-# permissions
-lsiown -R abc:abc \
-    /var/lib/nginx \
-    /var/tmp/nginx
+if [[ -z ${LSIO_READ_ONLY_FS} ]] && [[ -z ${LSIO_NON_ROOT_USER} ]]; then
+    # permissions
+    lsiown -R abc:abc \
+        /var/lib/nginx
 
-lsiown -R abc:abc \
-    /config/keys \
-    /config/nginx \
-    /config/log
+    chmod -R 644 /etc/logrotate.d
+fi
+
+if [[ -f "/config/log/logrotate.status" ]]; then
+    chmod 600 /config/log/logrotate.status
+fi
 
 chmod -R g+w \
     /config/nginx
 
-chmod -R 644 /etc/logrotate.d
-
-if [[ -f "/config/log/logrotate.status" ]]; then
-    chmod 600 /config/log/logrotate.status
+if [[ -z ${LSIO_NON_ROOT_USER} ]]; then
+    lsiown -R abc:abc \
+        /config/keys \
+        /config/log \
+        /config/nginx
 fi
