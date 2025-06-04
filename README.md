@@ -1,4 +1,9 @@
-# docker-nginx
-linuxserver.io Nginx (without PHP) inside Docker
-
-Inspired by https://github.com/nginxinc/docker-nginx/blob/master/stable/alpine/Dockerfile
+```bash
+git clone https://github.com/perlongqq/docker-nginx-fancyindex.git
+```
+```bash
+cd docker-nginx-fancyindex
+```
+```bash
+docker build -t nginx-fancyindex .
+```
